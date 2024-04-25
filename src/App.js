@@ -28,6 +28,17 @@ const App = ({ signOut }) => {
     fetchNotes();
   }, []);
 
+
+  // 
+
+  function TodoList() {
+  const [currentTime, setCurrentTime] = useState(new Date());
+ // Update current time every second
+  setInterval(() => {
+    setCurrentTime(new Date());
+  }, 1000);
+
+    
   async function fetchNotes() {
     const apiData = await client.graphql({ query: listNotes });
     const notesFromAPI = apiData.data.listNotes.items;
@@ -100,6 +111,7 @@ const App = ({ signOut }) => {
             <Button variation="link" onClick={() => deleteNote(note)}>
               Delete To-Do
             </Button>
+                <div>Current Date and Time: {currentTime.toString()}</div>
           </Flex>
         ))}
       </View>
